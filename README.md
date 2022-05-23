@@ -36,7 +36,7 @@ $ npm install
 
 Para clonar esse repositório copie o seu link na aba "code" acima. Após isso, escolha a pasta que receberar o repositório e abra o terminal do git com a opção "git bash". Após isso copie o seguinte código usando as teclas shift + insert 
 
-# 
+# git clone https://github.com/JVictor1604/nestjs-xboxlive.git
 
 ## Como rodar o Aplicativo
 
