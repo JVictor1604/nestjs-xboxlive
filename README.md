@@ -26,13 +26,19 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Installation
+## Instalação das dependências
 
 ```bash
 $ npm install
 ```
 
-## Running the app
+## Como clonar o repositório
+
+Para clonar esse repositório copie o seu link na aba "code" acima. Após isso, escolha a pasta que receberar o repositório e abra o terminal do git com a opção "git bash". Após isso copie o seguinte código usando as teclas shift + insert 
+
+# 
+
+## Como rodar o Aplicativo
 
 ```bash
 # development
@@ -45,28 +51,19 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+## Testar Aplicação
 
-```bash
-# unit tests
-$ npm run test
+Após ter realizado os procedimentos a cima, cole o este link em seu navegador. http://localhost:3333/api/
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
 
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-## Stay in touch
+## Contato
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- Author - [José Victor](https://www.linkedin.com/in/jos%C3%A9-victor-da-silva-izidorio-2992b221a/)
+- Instagram - [@jvictor_nw]((https://www.instagram.com/jvictor_nw/))
 
 ## License
 
