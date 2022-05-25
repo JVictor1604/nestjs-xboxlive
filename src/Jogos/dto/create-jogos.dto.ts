@@ -6,6 +6,12 @@ export class CreateJogosDto {
   @ApiProperty({
     description: 'Nome do Game',
     example: "Forza Horizon",
-  })
+   })
   nome: string;
+  @ApiProperty({
+    description: 'Genero do game',
+    example: "Corrida",
+   })
+  genero: string;
 }
+
