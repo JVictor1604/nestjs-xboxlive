@@ -1,5 +1,11 @@
-export class Jogo {
+export class Jogos {
     id?: string;
-    nome: string;
-    genero: string;
+    title: string;
+    gender: string;
+    description: string;
+    year: number;
+    imdbScore: number;
+    gameplayYouTubeUrl: string;
+    createdAt?: Date;
+    updatedAt?: Date;
   }
