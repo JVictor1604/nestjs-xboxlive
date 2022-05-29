@@ -10,6 +10,7 @@ export class CreateJogosDto {
    })
   title: string;
 
+  @IsString()
   @ApiProperty({
     description: 'Genero do game',
     example: "Corrida",

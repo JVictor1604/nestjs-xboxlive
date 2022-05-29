@@ -13,6 +13,7 @@ import { CreateJogosDto } from './dto/create-jogos.dto';
 import { JogosService } from './jogos.service';
 import { ApiOperation,ApiTags } from '@nestjs/swagger';
 import { UpdateJogosDto } from './dto/update-jogos.dto';
+import { get } from 'http';
 
 @ApiTags("Jogos")
 
@@ -34,6 +35,14 @@ export class JogosController {
   })
   findOne(@Param('id') id: string) {
     return this.JogosService.findOne(id);
+  }
+
+  @Get(":gender")
+  @ApiOperation({
+    summary: "Lista de games pelo gênero"
+  })
+  findbyGender(@Param('gender') gender: string) {
+    return this.JogosService.findbyGender(gender);
   }
 
   @Post()

@@ -30,7 +30,7 @@ model User {
   name     String
   email    String  @unique
   password String
-  cpf      Int
+  cpf      BigInt
   isAdm    Boolean
 
   createdAt DateTime @default(now()) @map("created_at")
