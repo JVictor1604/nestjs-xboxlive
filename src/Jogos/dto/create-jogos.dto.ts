@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsString, IsUrl } from 'class-validator';
+import { isNotEmpty, IsNumber, isPositive, IsString, IsUrl, maxLength } from 'class-validator';
 
 export class CreateJogosDto {
  
@@ -12,7 +12,7 @@ export class CreateJogosDto {
 
   @IsString()
   @ApiProperty({
-    description: 'Genero do game',
+    description: 'Gênero do game',
     example: "Corrida",
    })
   gender: string;
@@ -25,11 +25,12 @@ export class CreateJogosDto {
   })
   description: string;
    
+ 
   @IsNumber()
   @ApiProperty({
 
     description: "Ano do lançamento do game",
-    example: "2021",
+    example: 2021,
   })
   year: number;
    
@@ -37,9 +38,10 @@ export class CreateJogosDto {
   @ApiProperty({
 
     description: "Nota do Imdb",
-    example: "5",
+    example: 5,
   })
   imdbScore: number;
+
 
   @IsString()
   @IsUrl()
