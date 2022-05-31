@@ -24,7 +24,7 @@
 
 ## Descrição
 
-API simulando uma lista de jogos da Xbox Live em memória, utilizando Nest.js. 
+API simulando uma lista de jogos da Xbox Live com dados persistentes em banco de dados (Postgres), utilizando Nest.js. 
 
 ## Instalação das dependências
 
