@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from '../prisma/prisma.service';
@@ -28,7 +28,7 @@ export class UserService {
 
   handleError(error: Error) {
     console.log(error.message);
-
+    throw new UnprocessableEntityException(error.message);
     return undefined;
   }
 

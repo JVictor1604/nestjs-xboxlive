@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
 import { CreateJogosDto } from './dto/create-jogos.dto';
 import { UpdateJogosDto } from './dto/update-jogos.dto';
 import { PrismaService } from '../prisma/prisma.service';
@@ -27,13 +27,9 @@ export class JogosService {
     return this.findbyId(id);
   }
 
-  async findbyGender(gender: string) {
-    return await this.prisma.jogos.findMany({ where: { gender } });
-  }
-
   handleError(error: Error) {
     console.log(error.message);
-
+    throw new UnprocessableEntityException(error.message);
     return undefined;
   }
 

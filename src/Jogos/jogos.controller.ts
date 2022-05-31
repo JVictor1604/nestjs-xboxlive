@@ -37,14 +37,6 @@ export class JogosController {
     return this.JogosService.findOne(id);
   }
 
-  @Get(":gender")
-  @ApiOperation({
-    summary: "Lista de games pelo gênero"
-  })
-  findbyGender(@Param('gender') gender: string) {
-    return this.JogosService.findbyGender(gender);
-  }
-
   @Post()
   @ApiOperation({   
     summary: 'Cadastrar um novo game',
