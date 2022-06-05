@@ -23,16 +23,16 @@ model Jogos {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("jogos")
 
+  @@map("jogos")
 }
 
 model User {
   id       String  @id @default(uuid())
-  name     String 
+  name     String
   email    String  @unique
   password String
-  cpf      Int     @unique
+  cpf      String  @unique
   isAdm    Boolean
 
   createdAt DateTime @default(now()) @map("created_at")
@@ -52,4 +52,16 @@ model Genre {
 
 
   @@map("gender")
+}
+
+model Profiles {
+
+  id    String @id @default(uuid())
+  title String @unique
+  image String
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("profiles")
 }

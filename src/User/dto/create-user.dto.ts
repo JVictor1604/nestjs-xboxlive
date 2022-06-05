@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsBoolean, IsEmail, IsNumber, IsPositive, IsString, Length, maxLength, MinLength } from 'class-validator';
+import { IsBoolean, IsEmail, IsNumber, IsPositive, IsString, Length, Matches, maxLength, MinLength } from 'class-validator';
 
 export class CreateUserDto {
  
@@ -22,21 +22,32 @@ export class CreateUserDto {
 
   @MinLength(8)
   @IsString()
+  @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
+    message: 'Senha muito fraca',
+  })
   @ApiProperty({
 
-    description: "Senha do usuário",
-    example: "J@W1949",
+    description: "Senha do usuário com no mínimo 8 caracteres",
+    example: "J@W1949r",
   })
   password: string;
-   
-  @IsPositive()
-  @IsNumber()
+
+
+  @ApiProperty({
+
+    description: "Confirmação da senha, deve ser igual a senha  digitada anteriomente",
+    example: "J@W1949r",
+  })
+  confirmPassword: string;
+
+  
+  @IsString()
   @ApiProperty({
 
     description: "CPF do usuário",
-    example: 12345678910,
+    example: "12345678910",
   })
-  cpf: number;
+  cpf: string;
    
   @IsBoolean()
   @ApiProperty({
