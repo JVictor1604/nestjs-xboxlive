@@ -10,6 +10,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { PartialType } from '@nestjs/swagger';
+import { handleError } from 'src/handle-error-util';
 
 @Injectable()
 export class UserService {
@@ -44,19 +45,6 @@ export class UserService {
     return this.findbyId(id);
   }
 
-  handleError(error: Error): undefined {
-    const errorLines = error.message?.split('\n');
-    const lastErrorLine = errorLines[errorLines.length - 1]?.trim();
-
-    if (!lastErrorLine) {
-      console.error(error);
-    }
-
-    throw new UnprocessableEntityException(
-      lastErrorLine || 'Algum erro ocorreu ao executar a operação',
-    );
-  }
-
   async create(dto: CreateUserDto): Promise<User> {
     if (dto.password != dto.confirmPassword) {
       throw new BadRequestException('As senhas informadas não são iguais.');
@@ -67,14 +55,14 @@ export class UserService {
     const data: User = {
       ...dto,
       password: await bcrypt.hash(dto.password, 10),
-    };
+    }
 
     return this.prisma.user
       .create({
         data,
         select: this.Userselect,
       })
-      .catch(this.handleError);
+      .catch(handleError);
   }
 
   async update(id: string, dto: UpdateUserDto): Promise<User> {
@@ -97,7 +85,7 @@ export class UserService {
     return this.prisma.user.update({
       where: { id },
       data, select: this.Userselect
-    }).catch(this.handleError);
+    }).catch(handleError);
   }
 
   async delete(id: string) {

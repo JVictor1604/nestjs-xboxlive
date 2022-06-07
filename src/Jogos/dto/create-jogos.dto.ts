@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { isNotEmpty, IsNumber, isPositive, IsString, IsUrl, maxLength } from 'class-validator';
+import { isNotEmpty, IsNumber, isPositive, IsString, IsUrl, IsUUID, maxLength } from 'class-validator';
 
 export class CreateJogosDto {
  
@@ -9,13 +9,6 @@ export class CreateJogosDto {
     example: "Forza Horizon",
    })
   title: string;
-
-  @IsString()
-  @ApiProperty({
-    description: 'Gênero do game',
-    example: "Corrida",
-   })
-  gender: string;
 
   @IsString()
   @ApiProperty({
@@ -34,10 +27,12 @@ export class CreateJogosDto {
   })
   year: number;
    
-  @IsNumber()
-  @ApiProperty({
 
-    description: "Nota do Imdb",
+  @IsNumber({
+    maxDecimalPlaces: 1,
+  })
+  @ApiProperty({
+    description: 'Nota do IMDb para o jogo.',
     example: 5,
   })
   imdbScore: number;
@@ -46,9 +41,28 @@ export class CreateJogosDto {
   @IsString()
   @IsUrl()
   @ApiProperty({
-    description: "Gameplay do game no Youtube",
-    example: "https://www.youtube.com/watch?v=E2Ah8Dr9o2I",
+    description: 'Url do trailer do jogo.',
+    example: 'https://www.youtube.com/watch?v=vLj-27T-SEQ',
+  })
+  trailerYouTubeUrl: string;
+
+ 
+  @IsString()
+  @IsUrl()
+  @ApiProperty({
+    description: 'Url de uma game play do jogo.',
+    example: 'https://www.youtube.com/watch?v=OXCULaCzB0E',
   })
   gameplayYouTubeUrl: string;
+
+
+  @IsUUID(undefined, {each: true})
+  @ApiProperty({
+    description: 'Lista com os IDs dos gêneros do jogo.',
+    example:
+      '["e1b8679e-a3b8-429c-8e97-e6dd89274ae3", "31921fd0-46f3-442d-816d-ea38688d05fe"]',
+  })
+  genres: string[];
 }
+
 

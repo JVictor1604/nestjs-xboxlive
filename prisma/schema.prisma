@@ -14,15 +14,16 @@ model Jogos {
 
   id                 String @id @default(uuid())
   title              String @unique
-  gender             String
   description        String
   year               Int
-  imdbScore          Int
-  gameplayYouTubeUrl String
+  imdbScore          Float  @map("imdb_score")
+  trailerYouTubeUrl  String @map("trailer_youtube_url")
+  gameplayYouTubeUrl String @map("gameplay_youtube_url")
+
+  genres GameGenre[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
 
   @@map("jogos")
 }
@@ -34,6 +35,9 @@ model User {
   password String
   cpf      String  @unique
   isAdm    Boolean
+
+  profiles Profiles[]
+
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -49,9 +53,9 @@ model Genre {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
+  jogos GameGenre[]
 
-
-  @@map("gender")
+  @@map("genre")
 }
 
 model Profiles {
@@ -60,8 +64,24 @@ model Profiles {
   title String @unique
   image String
 
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
+
   @@map("profiles")
+}
+
+model GameGenre {
+
+  id      String @id @default(uuid())
+  jogos   Jogos  @relation(fields: [jogosId], references: [id])
+  jogosId String @map("game_id")
+  genre   Genre  @relation(fields: [genreId], references: [id])
+  genreId String @map("genre_id")
+
+  @@unique([jogosId, genreId])
+  @@map("game_to_genre")
 }

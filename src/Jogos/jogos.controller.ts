@@ -1,19 +1,11 @@
 import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  HttpCode,
-  HttpStatus,
+  Body, Controller, Delete, Get, HttpCode,
+  HttpStatus, Param, Patch, Post
 } from '@nestjs/common';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateJogosDto } from './dto/create-jogos.dto';
-import { JogosService } from './jogos.service';
-import { ApiOperation,ApiTags } from '@nestjs/swagger';
 import { UpdateJogosDto } from './dto/update-jogos.dto';
-import { get } from 'http';
+import { JogosService } from './jogos.service';
 
 @ApiTags("Jogos")
 
