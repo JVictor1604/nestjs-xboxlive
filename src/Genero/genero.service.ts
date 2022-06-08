@@ -3,7 +3,7 @@ import { CreateGeneroDto } from './dto/create-genero.dto';
 import { UpdateGeneroDto } from './dto/update-genero.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { Genero } from './entities/genero.entity';
-import { handleError } from 'src/handle-error-util';
+import { handleError } from 'src/User/Util/handle-error-util';
 
 @Injectable()
 export class GeneroService {
