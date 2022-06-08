@@ -11,6 +11,14 @@ export class CreateJogosDto {
   title: string;
 
   @IsString()
+  @IsUrl()
+  @ApiProperty({
+    description: 'Url da imagem do jogo.',
+    example: 'https://windowsclub.com.br/wp-content/uploads/2021/06/forza-horizon-5-2.jpg',
+  })
+  coverimgUrl: string;
+
+  @IsString()
   @ApiProperty({
 
     description: "Descrição do game",

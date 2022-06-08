@@ -14,6 +14,7 @@ model Jogos {
 
   id                 String @id @default(uuid())
   title              String @unique
+  coverimgUrl        String
   description        String
   year               Int
   imdbScore          Float  @map("imdb_score")
@@ -21,6 +22,8 @@ model Jogos {
   gameplayYouTubeUrl String @map("gameplay_youtube_url")
 
   genres GameGenre[]
+
+  profile GameProfiles[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -67,6 +70,9 @@ model Profiles {
   user   User   @relation(fields: [userId], references: [id])
   userId String
 
+
+  jogos GameProfiles[]
+
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
@@ -84,4 +90,13 @@ model GameGenre {
 
   @@unique([jogosId, genreId])
   @@map("game_to_genre")
+}
+
+model GameProfiles {
+
+  id        String   @id @default(uuid())
+  jogos     Jogos    @relation(fields: [jogosId], references: [id])
+  jogosId   String   @map("game_id")
+  profile   Profiles @relation(fields: [profileId], references: [id])
+  profileId String   @map("profile_id")
 }

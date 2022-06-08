@@ -29,6 +29,13 @@ image: string;
   })
   userId: string;
 
+  @IsUUID(undefined, {each: true})
+  @ApiProperty({
+    description: 'ID do jogo que será adicionado ao perfil',
+    example: '["e64bc6b6-d8a9-485a-a9c8-231322de1fca", "ssd4bc6b6-d8a9-485a-a9c8-231322de1fca"]',
+  })
+  jogos: string[];
+
 
 }
 

@@ -1,14 +1,9 @@
-import {
-  Injectable,
-  NotFoundException,
-  UnprocessableEntityException,
-} from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
+import { handleError } from 'src/handle-error-util';
+import { PrismaService } from '../prisma/prisma.service';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
-import { PrismaService } from '../prisma/prisma.service';
-import { Profile } from './entities/profile.entity';
-import { handleError } from 'src/handle-error-util';
-import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class ProfileService {
@@ -24,6 +19,9 @@ export class ProfileService {
         name: true,
       },
     },
+    jogos: {
+      select: { jogos: { select: { title: true, coverimgUrl: true } } },
+    },
   };
 
   async findAll() {
@@ -33,6 +31,9 @@ export class ProfileService {
         title: true,
         image: true,
         user: { select: { id: true, name: true } },
+        jogos: {
+          select: { jogos: { select: { title: true, coverimgUrl: true } } },
+        },
       },
     });
     if (profiles.length == 0) {
@@ -46,6 +47,17 @@ export class ProfileService {
       where: { id },
       include: {
         user: { select: { name: true } },
+        jogos: {
+          select: {
+            jogos: {
+              select: {
+                title: true,
+                coverimgUrl: true,
+                genres: { select: { genre: { select: { gender: true } } } },
+              },
+            },
+          },
+        },
       },
     });
 
@@ -67,6 +79,11 @@ export class ProfileService {
       user: {
         connect: {
           id: dto.userId,
+        },
+      },
+      jogos: {
+        createMany: {
+          data: dto.jogos.map((jogosid) => ({ jogosId: jogosid })),
         },
       },
     };
