@@ -17,6 +17,7 @@ async function bootstrap() {
     .addTag("Jogos")
     .addTag("User")
     .addTag("Profiles")
+    .addTag("Homepage")
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

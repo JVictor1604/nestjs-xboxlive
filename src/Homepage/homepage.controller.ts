@@ -2,7 +2,7 @@ import { Controller, Get, Param } from '@nestjs/common';
 import { HomepageService } from './homepage.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
-@ApiTags("Favorites and Genres")
+@ApiTags("Homepage")
 @Controller('homepage')
 export class HomepageController {
   constructor(private readonly homepageService: HomepageService) {}
