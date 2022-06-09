@@ -55,7 +55,7 @@ $ npm run start:prod
 
 ## Testar Aplicação
 
-Após ter realizado os procedimentos a cima, cole o este link em seu navegador: http://localhost:3333/api/
+Após ter realizado os procedimentos a cima, cole o este link em seu navegador: http://localhost:3333/api/, lá você terá acessso aos métodos CRUD dos Schemas: User,Jogos,Profiles e Genres 
 
 
 ## Support
