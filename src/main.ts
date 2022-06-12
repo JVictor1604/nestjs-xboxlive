@@ -11,10 +11,12 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Games Xbox Live')
-    .setDescription('Lista de Jogos em memória baseada no Xbox Live')
+    .setDescription('Lista de Jogos com dados persistentesa no Postgres, baseada no Xbox Live')
     .setVersion('1.0.0')
     .addTag('Status')
     .addTag("Jogos")
+    .addTag("User")
+    .addTag("Profiles")
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

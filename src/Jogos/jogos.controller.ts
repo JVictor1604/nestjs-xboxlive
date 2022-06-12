@@ -1,7 +1,19 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  HttpCode,
+  HttpStatus,
+} from '@nestjs/common';
 import { CreateJogosDto } from './dto/create-jogos.dto';
 import { JogosService } from './jogos.service';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOperation,ApiTags } from '@nestjs/swagger';
+import { UpdateJogosDto } from './dto/update-jogos.dto';
+import { get } from 'http';
 
 @ApiTags("Jogos")
 
@@ -10,12 +22,44 @@ export class JogosController {
   constructor(private JogosService: JogosService) {}
 
   @Get()
+  @ApiOperation({
+    summary: "Listar todos os games"
+  })
   findAll() {
     return this.JogosService.findAll();
   }
 
+  @Get(":id")
+  @ApiOperation({
+    summary: "Listar um game pelo ID"
+  })
+  findOne(@Param('id') id: string) {
+    return this.JogosService.findOne(id);
+  }
+
   @Post()
+  @ApiOperation({   
+    summary: 'Cadastrar um novo game',
+  })
   create(@Body() createJogosDto: CreateJogosDto) {
     return this.JogosService.create(createJogosDto);
   }
+
+  @Patch(':id')
+  @ApiOperation({ 
+    summary: 'Editar um game pelo ID',
+  })
+  update(@Param('id') id: string, @Body() updateJogosDto: UpdateJogosDto) {
+    return this.JogosService.update(id, updateJogosDto);
+  }
+
+  @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @ApiOperation({    
+    summary: 'Remover um game pelo ID',
+  })
+  delete(@Param('id') id: string) {
+    this.JogosService.delete(id);
+  }
 }
+
