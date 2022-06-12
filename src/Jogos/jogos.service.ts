@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { handleError } from 'src/User/Util/handle-error-util';
+import { handleError } from 'Util/handle-error-util';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateJogosDto } from './dto/create-jogos.dto';
 import { UpdateJogosDto } from './dto/update-jogos.dto';

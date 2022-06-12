@@ -1,14 +1,16 @@
 import {
   Body, Controller, Delete, Get, HttpCode,
-  HttpStatus, Param, Patch, Post
+  HttpStatus, Param, Patch, Post, UseGuards
 } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateJogosDto } from './dto/create-jogos.dto';
 import { UpdateJogosDto } from './dto/update-jogos.dto';
 import { JogosService } from './jogos.service';
 
 @ApiTags("Jogos")
-
+@UseGuards(AuthGuard())
+@ApiBearerAuth()
 @Controller('jogos')
 export class JogosController {
   constructor(private JogosService: JogosService) {}

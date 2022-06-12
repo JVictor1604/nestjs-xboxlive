@@ -10,7 +10,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { PartialType } from '@nestjs/swagger';
-import { handleError } from 'src/User/Util/handle-error-util';
+import { handleError } from 'Util/handle-error-util';
 
 @Injectable()
 export class UserService {
